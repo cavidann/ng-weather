@@ -1,0 +1,310 @@
+<!-- <div class="flex wrap"> -->
+  <div class="col-40 img"></div>
+  <div class="col-60 content">
+    <div class="sticky-t menu">
+      <form class="flex" [formGroup]="regionForm" (ngSubmit)="search(regionForm.value)">
+          <input type="text" name="city" placeholder="City" formControlName="city" />
+          <input
+            type="text"
+            name="country"
+            placeholder="Country"
+            formControlName="country"
+          />
+          <button [disabled]="!regionForm.valid">Get Weather</button>
+        </form>
+
+        <div class="tabs flex">
+          <button class="tab" [class.active]="i === active" *ngFor="let day of days; let i = index" (click)="filterAndActive(day.day, i)"><b> {{day.day | date: "dd/MM/yyyy" }}</b></button>
+          <!-- <div class="tab" [class.active]="1 === active" (click)="filterAndActive('day', 1)">1</div>
+          <div class="tab" [class.active]="2 === active" (click)="filterAndActive('day', 2)">2</div>
+          <div class="tab" [class.active]="3 === active" (click)="filterAndActive('day', 3)">3</div>
+          <div class="tab" [class.active]="4 === active" (click)="filterAndActive('day', 4)">4</div>
+          <div class="tab" [class.active]="5 === active" (click)="filterAndActive('day', 5)">5</div> -->
+        </div>
+    </div>
+
+        <ul class="flex wrap">
+          <li class="col-33" *ngFor="let item of weatherList; let i = index">
+            <div class="p-10">
+              <div class="card p-10" >
+                <div class="border p-10 flex wrap" style="justify-content: space-around">
+                  <h4><b>Date: </b>{{ item.dt_txt | date: "dd/MM/yyyy" }}</h4>
+                  <h4><b>Hour: </b>{{ item.dt_txt | date: "H:mm" }}</h4>
+                </div>
+                <div>
+                  <div>
+                    <h3 class="t-center">
+                      {{ item.main.temp - 273.5 | number: "1.0-0" }} C
+                      <sup
+                        >o
+                        <img
+                          src="http://openweathermap.org/img/w/{{
+                            item.weather[0].icon
+                          }}.png"
+                          alt="icon"
+                      /></sup>
+                    </h3>
+                  </div>
+                </div>
+                <div class="main">
+                  <p><b>Weather:</b> {{ item.weather[0].description }}</p>
+                  <p><b>Wind speed:</b> {{ item.wind.speed }}</p>
+                  <p><b>Humidity:</b> {{ item.main.humidity }}%</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <!-- <ul class="flex wrap">
+            <li class="col-33">
+              <div class="p-10">
+                <div class="card p-10" >
+                  <div class="border p-10 flex wrap" style="justify-content: space-around">
+                    <h4>Date: 01/01/1990 </h4>
+                    <h4>Hour: 08:00 </h4>
+                  </div>
+                  <div>
+                    <div>
+                      <h3 class="t-center">
+                         -7 C
+                        <sup
+                          >o</sup>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="main">
+                    <p><b>Weather:</b> item.weather[0].description</p>
+                    <p><b>Wind speed:</b> item.wind.speed</p>
+                    <p><b>Humidity:</b> item.main.humidity</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="col-33">
+                <div class="p-10">
+                  <div class="card p-10" >
+                    <div class="border p-10 flex wrap" style="justify-content: space-around">
+                      <h4>Date: 01/01/1990 </h4>
+                      <h4>Hour: 08:00 </h4>
+                    </div>
+                    <div>
+                      <div>
+                        <h3 class="t-center">
+                           -7 C
+                          <sup
+                            >o</sup>
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="main">
+                      <p><b>Weather:</b> item.weather[0].description</p>
+                      <p><b>Wind speed:</b> item.wind.speed</p>
+                      <p><b>Humidity:</b> item.main.humidity</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="col-33">
+                  <div class="p-10">
+                    <div class="card p-10" >
+                      <div class="border p-10 flex wrap" style="justify-content: space-around">
+                        <h4>Date: 01/01/1990 </h4>
+                        <h4>Hour: 08:00 </h4>
+                      </div>
+                      <div>
+                        <div>
+                          <h3 class="t-center">
+                             -7 C
+                            <sup
+                              >o
+                              </sup>
+                          </h3>
+                        </div>
+                      </div>
+                      <div class="main">
+                        <p><b>Weather:</b> item.weather[0].description</p>
+                        <p><b>Wind speed:</b> item.wind.speed</p>
+                        <p><b>Humidity:</b> item.main.humidity</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="col-33">
+                    <div class="p-10">
+                      <div class="card p-10" >
+                        <div class="border p-10 flex wrap" style="justify-content: space-around">
+                          <h4>Date: 01/01/1990 </h4>
+                          <h4>Hour: 08:00 </h4>
+                        </div>
+                        <div>
+                          <div>
+                            <h3 class="t-center">
+                               -7 C
+                              <sup
+                                >o
+                                </sup>
+                            </h3>
+                          </div>
+                        </div>
+                        <div class="main">
+                          <p><b>Weather:</b> item.weather[0].description</p>
+                          <p><b>Wind speed:</b> item.wind.speed</p>
+                          <p><b>Humidity:</b> item.main.humidity</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col-33">
+                      <div class="p-10">
+                        <div class="card p-10" >
+                          <div class="border p-10 flex wrap" style="justify-content: space-around">
+                            <h4>Date: 01/01/1990 </h4>
+                            <h4>Hour: 08:00 </h4>
+                          </div>
+                          <div>
+                            <div>
+                              <h3 class="t-center">
+                                 -7 C
+                                <sup
+                                  >o
+                                  </sup>
+                              </h3>
+                            </div>
+                          </div>
+                          <div class="main">
+                            <p><b>Weather:</b> item.weather[0].description</p>
+                            <p><b>Wind speed:</b> item.wind.speed</p>
+                            <p><b>Humidity:</b> item.main.humidity</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="col-33">
+                        <div class="p-10">
+                          <div class="card p-10" >
+                            <div class="border p-10 flex wrap" style="justify-content: space-around">
+                              <h4>Date: 01/01/1990 </h4>
+                              <h4>Hour: 08:00 </h4>
+                            </div>
+                            <div>
+                              <div>
+                                <h3 class="t-center">
+                                   -7 C
+                                  <sup
+                                    >o
+                                    </sup>
+                                </h3>
+                              </div>
+                            </div>
+                            <div class="main">
+                              <p><b>Weather:</b> item.weather[0].description</p>
+                              <p><b>Wind speed:</b> item.wind.speed</p>
+                              <p><b>Humidity:</b> item.main.humidity</p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="col-33">
+                          <div class="p-10">
+                            <div class="card p-10" >
+                              <div class="border p-10 flex wrap" style="justify-content: space-around">
+                                <h4>Date: 01/01/1990 </h4>
+                                <h4>Hour: 08:00 </h4>
+                              </div>
+                              <div>
+                                <div>
+                                  <h3 class="t-center">
+                                     -7 C
+                                    <sup
+                                      >o
+                                      </sup>
+                                  </h3>
+                                </div>
+                              </div>
+                              <div class="main">
+                                <p><b>Weather:</b> item.weather[0].description</p>
+                                <p><b>Wind speed:</b> item.wind.speed</p>
+                                <p><b>Humidity:</b> item.main.humidity</p>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="col-33">
+                            <div class="p-10">
+                              <div class="card p-10" >
+                                <div class="border p-10 flex wrap" style="justify-content: space-around">
+                                  <h4>Date: 01/01/1990 </h4>
+                                  <h4>Hour: 08:00 </h4>
+                                </div>
+                                <div>
+                                  <div>
+                                    <h3 class="t-center">
+                                       -7 C
+                                      <sup
+                                        >o
+                                        </sup>
+                                    </h3>
+                                  </div>
+                                </div>
+                                <div class="main">
+                                  <p><b>Weather:</b> item.weather[0].description</p>
+                                  <p><b>Wind speed:</b> item.wind.speed</p>
+                                  <p><b>Humidity:</b> item.main.humidity</p>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="col-33">
+                              <div class="p-10">
+                                <div class="card p-10" >
+                                  <div class="border p-10 flex wrap" style="justify-content: space-around">
+                                    <h4>Date: 01/01/1990 </h4>
+                                    <h4>Hour: 08:00 </h4>
+                                  </div>
+                                  <div>
+                                    <div>
+                                      <h3 class="t-center">
+                                         -7 C
+                                        <sup
+                                          >o
+                                          </sup>
+                                      </h3>
+                                    </div>
+                                  </div>
+                                  <div class="main">
+                                    <p><b>Weather:</b> item.weather[0].description</p>
+                                    <p><b>Wind speed:</b> item.wind.speed</p>
+                                    <p><b>Humidity:</b> item.main.humidity</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="col-33">
+                                <div class="p-10">
+                                  <div class="card p-10" >
+                                    <div class="border p-10 flex wrap" style="justify-content: space-around">
+                                      <h4>Date: 01/01/1990 </h4>
+                                      <h4>Hour: 08:00 </h4>
+                                    </div>
+                                    <div>
+                                      <div>
+                                        <h3 class="t-center">
+                                           -7 C
+                                          <sup
+                                            >o
+                                            </sup>
+                                        </h3>
+                                      </div>
+                                    </div>
+                                    <div class="main">
+                                      <p><b>Weather:</b> item.weather[0].description</p>
+                                      <p><b>Wind speed:</b> item.wind.speed</p>
+                                      <p><b>Humidity:</b> item.main.humidity</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+          </ul> -->
+  </div>
+<!-- </div> -->

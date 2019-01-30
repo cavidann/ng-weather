@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  /* border-radius: 10px; */
+  background: transparent
+}
+
+::-webkit-scrollbar-thumb {
+  /* -webkit-border-radius: 10px;
+  border-radius: 10px; */
+  background: #f16051;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #f16051;
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+  background: #273648;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+*{
+  font-family: "Arial";
+}
+
+.flex{
+  display: flex;
+}
+
+.wrap{
+  flex-wrap: wrap;
+}
+
+.col-33{
+  width: 33.33%;
+}
+
+.col-40{
+  width: 40%;
+}
+
+.col-50{
+  width: 50%;
+}
+
+.col-60{
+  width: 60%;
+}
+
+.border{
+  border:1px solid #f16051;
+}
+
+.p-10{
+  padding:10px;
+}
+
+.p-5{
+  padding: 5px;
+}
+
+.sticky-t{
+  position: sticky;
+  top: 0px;
+  right: 0px;
+}
+
+
+.t-center{
+  text-align: center;
+}
